@@ -2,8 +2,10 @@ package Domain.Shape.Classes;
 
 import Domain.Shape.Models.*;
 import Domain.Shape.ObjectsToDraw;
+import Domain.Shape.Shape;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,15 +14,26 @@ import static org.junit.jupiter.api.Assertions.fail;
 class AbstractClassTest {
 
     @Test
-    void validaClassDrawing() {
+    void createClass(){
+        Point startPoint = new Point(0, 0);
+        Size size = new Size(100, 100);
+        String text = "Abstract class";
+        try {
+            AbstractClass abstractClass = new AbstractClass(startPoint, size, text);
+            assertEquals(true, abstractClass != null, "Abstract class");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
 
+    @Test
+    void validaClassDrawing() {
         Point startPoint = new Point(0, 0);
         Size size = new Size(100, 100);
         String text = "Text Sample";
 
         AbstractClass abstractClass = null;
         try {
-
             abstractClass = new AbstractClass(startPoint, size, text);
             ObjectsToDraw objToDraw = abstractClass.getObjectsToDraw();
 
@@ -35,7 +48,5 @@ class AbstractClassTest {
         } catch (Exception e) {
             fail(e.getMessage());
         }
-
     }
-
 }
