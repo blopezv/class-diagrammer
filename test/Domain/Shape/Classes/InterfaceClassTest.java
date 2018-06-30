@@ -11,19 +11,28 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class InterfaceClassTest {
 
+    @Test
+    void createClass() {
+        Point startPoint = new Point(0, 0);
+        Size size = new Size(100, 100);
+        String text = "Interface class";
+        try {
+            InterfaceClass interfaceClass = new InterfaceClass(startPoint, size, text);
+            assertEquals(true, interfaceClass != null, "Interface class");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
 
     @Test
     void validaClassDrawing() {
-
         Point startPoint = new Point(0, 0);
         Size size = new Size(100, 100);
         String text = "Text Sample";
 
         InterfaceClass interfaceClass = null;
         try {
-
             interfaceClass = new InterfaceClass(startPoint, size, text);
-
             ObjectsToDraw objToDraw = interfaceClass.getObjectsToDraw();
 
             List<Line> lines = objToDraw.getLines();
@@ -37,6 +46,5 @@ class InterfaceClassTest {
         } catch (Exception e) {
             fail(e.getMessage());
         }
-
     }
 }
