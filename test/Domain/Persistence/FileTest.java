@@ -6,7 +6,9 @@ import Domain.Shape.ObjectsToDraw;
 import Domain.Shape.Shape;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ public class FileTest {
         String text = "Text Sample";
 
         NormalClass normalClass = null;
-        try{
+        try {
             normalClass = new NormalClass(startPoint, size, text);
             ObjectsToDraw objToDraw = normalClass.getObjectsToDraw();
             shapes.add(normalClass);
@@ -35,9 +37,22 @@ public class FileTest {
             out.writeObject(shapes);
             out.close();
 
-            assertEquals("Text Sample", normalClass.getText(), "Interface Class has 9 lines");
+            assertEquals("Text Sample", normalClass.getText(), "Shape save");
         } catch (Exception e) {
             fail(e.getMessage());
         }
+    }
+
+    @Test
+    void load() {
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream("resources/diagrammer.data"));
+            List<Shape> shapes = (List<Shape>) in.readObject();
+            in.close();
+            assertEquals(1, shapes.size(), "Shape load");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+
     }
 }
