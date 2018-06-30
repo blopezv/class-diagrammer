@@ -1,9 +1,7 @@
 package Domain.Persistence;
 
-import Domain.Board.Board;
 import Domain.Shape.Classes.NormalClass;
-import Domain.Shape.Models.Point;
-import Domain.Shape.Models.Size;
+import Domain.Shape.Models.*;
 import Domain.Shape.ObjectsToDraw;
 import Domain.Shape.Shape;
 import org.junit.jupiter.api.Test;
@@ -13,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 /**
@@ -21,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class FileTest {
     @Test
     void Save() {
-
         List<Shape> shapes = new ArrayList<>(0);
         Point startPoint = new Point(0, 0);
         Size size = new Size(100, 100);
@@ -30,12 +28,14 @@ public class FileTest {
         NormalClass normalClass = null;
         try{
             normalClass = new NormalClass(startPoint, size, text);
+            ObjectsToDraw objToDraw = normalClass.getObjectsToDraw();
             shapes.add(normalClass);
 
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("test"));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("resources/diagrammer.data"));
             out.writeObject(shapes);
             out.close();
 
+            assertEquals("Text Sample", normalClass.getText(), "Interface Class has 9 lines");
         } catch (Exception e) {
             fail(e.getMessage());
         }
