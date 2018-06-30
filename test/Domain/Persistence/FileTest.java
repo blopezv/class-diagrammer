@@ -4,6 +4,7 @@ import Domain.Shape.Classes.NormalClass;
 import Domain.Shape.Models.*;
 import Domain.Shape.ObjectsToDraw;
 import Domain.Shape.Shape;
+import Persistence.File;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
@@ -33,9 +34,8 @@ public class FileTest {
             ObjectsToDraw objToDraw = normalClass.getObjectsToDraw();
             shapes.add(normalClass);
 
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("resources/diagrammer.data"));
-            out.writeObject(shapes);
-            out.close();
+            File file = new File("resources/diagrammer.data");
+            file.save(shapes);
 
             assertEquals("Text Sample", normalClass.getText(), "Shape save");
         } catch (Exception e) {
@@ -46,9 +46,8 @@ public class FileTest {
     @Test
     void load() {
         try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream("resources/diagrammer.data"));
-            List<Shape> shapes = (List<Shape>) in.readObject();
-            in.close();
+            File file = new File("resources/diagrammer.data");
+            List<Shape> shapes = file.load();
             assertEquals(1, shapes.size(), "Shape load");
         } catch (Exception e) {
             fail(e.getMessage());

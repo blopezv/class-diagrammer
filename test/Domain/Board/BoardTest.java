@@ -13,18 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class BoardTest {
-
-
     @Test
     void createdBoard() {
-
-        try {
-            new Board();
-
-        } catch (Exception e) {
-            fail(e.getMessage());
-        }
-
         try {
             new Board();
         } catch (Exception e) {
@@ -34,8 +24,6 @@ class BoardTest {
 
     @Test
     void repositoryUse() {
-
-
         Board board = null;
         try {
             board = new Board();
@@ -106,7 +94,6 @@ class BoardTest {
         }
 
         assertEquals(0, board.getShapes().size());
-
 
         try {
             board.loadData();

@@ -10,8 +10,6 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class File implements Repository {
-
-
     private String fileName;
 
     public File(String fileName) {
@@ -32,5 +30,4 @@ public class File implements Repository {
         in.close();
         return shapes;
     }
-
 }
