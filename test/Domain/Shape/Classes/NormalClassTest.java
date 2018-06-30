@@ -12,6 +12,19 @@ import static org.junit.jupiter.api.Assertions.fail;
 class NormalClassTest {
 
     @Test
+    void createClass() {
+        Point startPoint = new Point(0, 0);
+        Size size = new Size(100, 100);
+        String text = "Normal class";
+        try {
+            NormalClass normalClass = new NormalClass(startPoint, size, text);
+            assertEquals(true, normalClass != null, "Normal class");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+    
+    @Test
     void validaClassDrawing() {
 
         Point startPoint = new Point(0, 0);
