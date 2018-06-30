@@ -10,36 +10,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class MainClassTest {
-
-
     @Test
     void createdClass() {
-
         Point positionPoint = new Point(100, 100);
         Size size = new Size(100, 100);
         String text = "Text Sample";
-
-
         try {
             new NormalClass(null, size, text);
             fail("Start point can't be null");
         } catch (Exception e) {
+            fail(e.getMessage());
         }
-
-
         try {
             new NormalClass(positionPoint, null, text);
             fail("Size can't be null");
         } catch (Exception e) {
+            fail(e.getMessage());
         }
-
 
         try {
             new NormalClass(positionPoint, size, null);
             fail("Text can't be empty");
         } catch (Exception e) {
+            fail(e.getMessage());
         }
-
 
         try {
             new NormalClass(positionPoint, size, text);
@@ -48,10 +42,8 @@ class MainClassTest {
         }
     }
 
-
     @Test
     void validaClassDrawing() {
-
         Point startPoint = new Point(0, 0);
         Size size = new Size(100, 100);
         String text = "Text Sample";
@@ -72,6 +64,5 @@ class MainClassTest {
         } catch (Exception e) {
             fail(e.getMessage());
         }
-
     }
 }
